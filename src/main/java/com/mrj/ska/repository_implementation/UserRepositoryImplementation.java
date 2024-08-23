@@ -70,12 +70,17 @@ public class UserRepositoryImplementation implements UserRepository {
 
 	@Override
 	public String updatePassword(int id, String password) {
-		String msg = "";
+		String msg;
 		String hql = "update User us set us.password = :password where us.userId = :id";
 		try {
-			Query query = em.createQuery(hql).setParameter("password", password).setParameter("id", id);
-			System.out.println(query.toString());
-			msg = "User Password Updated successfully";
+			Query query = em.createQuery(hql).setParameter("password", password) // Consider hashing the password here
+					.setParameter("id", id);
+			int updatedCount = query.executeUpdate();
+			if (updatedCount > 0) {
+				msg = "User Password Updated successfully";
+			} else {
+				msg = "User not found or no changes made";
+			}
 		} catch (Exception e) {
 			msg = "Update Password failed";
 		}
@@ -98,18 +103,18 @@ public class UserRepositoryImplementation implements UserRepository {
 		User user;
 		try {
 			Query query = em.createQuery(hql).setParameter("name", name);
-			user = (User)query.getSingleResult();
-			
+			user = (User) query.getSingleResult();
+
 		} catch (Exception e) {
 			user = null;
-		}		
+		}
 		return user;
 	}
-	
+
 	public User login(String email, String password) {
 		String hql = "select r from User r where email = :email and password = :password ";
 		Query query = em.createQuery(hql).setParameter("email", email).setParameter("password", password);
-		return (User)query.getSingleResult();
+		return (User) query.getSingleResult();
 	}
 
 	@SuppressWarnings("unchecked")
