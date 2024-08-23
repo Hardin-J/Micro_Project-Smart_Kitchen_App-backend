@@ -29,7 +29,7 @@ class AdminServiceImplementationTest {
 
 	@Test
 	void testUpdate() {
-		Admin admin = service.getAdminById(5);
+		Admin admin = service.getAdminById(22);
 		admin.setAdminName("NewAdmin");
 		admin.setPassword("54321");
 		String msg = service.updateAdmin(admin);
@@ -44,7 +44,7 @@ class AdminServiceImplementationTest {
 
 	@Test
 	void testFindAdminByEmail() {
-		Admin admin = service.getAdminByEmail("admin@gmail.com");
+		Admin admin = service.getAdminByEmail("mrjeeva1011@gmail.com");
 		assertNotNull(admin);		
 	}
 

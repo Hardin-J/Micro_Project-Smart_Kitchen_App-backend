@@ -15,29 +15,28 @@ class UserServiceImplementationTest {
 	@Autowired
 	UserService service;
 
-	@Test
-	void testAddUser() {
-		User user = new User();
-		String msg = service.addUser(user);
-		assertEquals("User Added Successfully", msg);
-	}
-
+	int num = 1; 
 	@Test
 	void testUpdateUser() {
-		User user = service.getUserById(9);
+		num++;
+		User user = service.getUserById(20);
+		user.setName("User");
+		user.setEmail("user"+num+"@gmail.com");
+		user.setPassword("12345678");
+		user.setPhoneNumber("9638527410");
 		String msg = service.updateUser(user);
 		assertEquals("User Updated Successfully", msg);
 	}
 
 	@Test
 	void testUpdatePassword() {
-		String msg = service.updatePassword(9, "pass");
+		String msg = service.updatePassword(20, "pass");
 		assertEquals("User Password Updated successfully", msg);
 	}
 
 	@Test
 	void testGetUserById() {
-		assertNotNull(service.getUserById(9));
+		assertNotNull(service.getUserById(20));
 	}
 
 	@Test

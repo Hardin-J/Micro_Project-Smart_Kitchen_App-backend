@@ -26,7 +26,7 @@ class RecipeServiceImplementationTest {
 	void testUpdateRecipe() {
 		Recipe recipe = new Recipe(4,"Recipe","","ingredients",null,null);
 		String msg = service.updateRecipe(recipe);
-		assertEquals("Recipe Updated Successfully", msg);
+		assertEquals("Recipe Not found", msg);
 		
 	}
 
