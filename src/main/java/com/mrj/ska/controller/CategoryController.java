@@ -43,7 +43,6 @@ public class CategoryController {
 		if (cat != null) {
 			return cat;
 		} else {
-			System.out.println(cat);
 			return null;
 		}
 	}
