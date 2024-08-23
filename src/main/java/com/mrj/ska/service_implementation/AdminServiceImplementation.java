@@ -19,13 +19,13 @@ public class AdminServiceImplementation implements AdminService{
 	}
 
 	@Override
-	public String addAdmin(Admin Admin) {
-		return repo.save(Admin);
+	public String addAdmin(Admin admin) {
+		return repo.save(admin);
 	}
 
 	@Override
-	public String updateAdmin(Admin Admin) {
-		return repo.update(Admin);
+	public String updateAdmin(Admin admin) {
+		return repo.update(admin);
 	}
 
 	@Override

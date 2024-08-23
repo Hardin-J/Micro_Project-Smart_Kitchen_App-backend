@@ -5,9 +5,9 @@ import java.util.List;
 import com.mrj.ska.model.Admin;
 
 public interface AdminService {
-	public String addAdmin(Admin Admin);
+	public String addAdmin(Admin admin);
 
-	public String updateAdmin(Admin Admin);
+	public String updateAdmin(Admin admin);
 
 	public String removeAdmin(int id);
 
