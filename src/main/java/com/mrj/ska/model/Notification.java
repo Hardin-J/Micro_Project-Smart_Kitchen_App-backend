@@ -28,20 +28,17 @@ public class Notification {
 	
 	@Column(name = "Message")
 	private String message;
-	
-	@Column(name = "Status")
-	private String status;
 
 	public Notification() {
 		super();
 	}
 
-	public Notification(long notificationId, Product product, String message, String status) {
+	public Notification(long notificationId, Product product, User user, String message) {
 		super();
 		this.notificationId = notificationId;
 		this.product = product;
+		this.user = user;
 		this.message = message;
-		this.status = status;
 	}
 
 	public long getNotificationId() {
@@ -68,11 +65,11 @@ public class Notification {
 		this.message = message;
 	}
 
-	public String getStatus() {
-		return status;
+	public User getUser() {
+		return user;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

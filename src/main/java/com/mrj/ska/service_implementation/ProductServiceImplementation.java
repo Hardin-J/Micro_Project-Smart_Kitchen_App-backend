@@ -33,6 +33,7 @@ public class ProductServiceImplementation implements ProductService {
 		PurchaseHistory purchaseHistory = new PurchaseHistory();
 		purchaseHistory.setProduct(pro);
 		purchaseHistory.setUser(pro.getUser());
+		purchaseHistory.setQuantity(pro.getQuantity());
 		msg = proRepo.save(pro);
 		purRepo.save(purchaseHistory);
 		return msg;
@@ -44,19 +45,12 @@ public class ProductServiceImplementation implements ProductService {
 		int preCount = proRepo.getSingleProductQuant(pro);
 		int newCount = pro.getQuantity();
 		if (preCount < newCount) {
+			
 			PurchaseHistory purchaseHistory = new PurchaseHistory();
 
-			// adding updated product with updated quantity in purchase history
-			Product purPro = new Product();
-			purPro.setProductId(pro.getProductId());
-			purPro.setProductName(pro.getProductName());
-			purPro.setDescription(pro.getDescription());
-			purPro.setPrice(pro.getPrice());
-			purPro.setQuantity(newCount - preCount);
-			purPro.setCategory(pro.getCategory());
-
 			// product and user adding in purchase history
-			purchaseHistory.setProduct(purPro);
+			purchaseHistory.setProduct(pro);
+			purchaseHistory.setQuantity(newCount - preCount);
 			purchaseHistory.setUser(pro.getUser());
 
 			// product is updated
@@ -68,8 +62,8 @@ public class ProductServiceImplementation implements ProductService {
 			// Notification created
 			Notification not = new Notification();
 			not.setProduct(pro);
-			not.setStatus("unread");
 			not.setMessage(pro.getProductName() + " is Out of Stock. please re-fill it");
+			not.setUser(pro.getUser());
 
 			// product is updated
 			msg = proRepo.update(pro);
@@ -79,9 +73,6 @@ public class ProductServiceImplementation implements ProductService {
 		} else {
 			msg = proRepo.update(pro);
 		}
-//		purchaseHistory.setProduct(pro);
-//		purchaseHistory.setUser(pro.getUser());
-//		purRepo.save(purchaseHistory);
 		return msg;
 	}
 

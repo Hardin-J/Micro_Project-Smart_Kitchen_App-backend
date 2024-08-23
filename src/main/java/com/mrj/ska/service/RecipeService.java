@@ -11,6 +11,8 @@ public interface RecipeService {
 	public String updateRecipe(Recipe recipe);
 
 	public String removeRecipe(int id);
+	
+	public Recipe getRecipeById(int id);
 
 	public List<Recipe> getAllRecipes();
 

@@ -36,7 +36,6 @@ public class RecipeRepositoryImplementation implements RecipeRepository{
 
 	@Override
 	public String update(Recipe recipe) {
-		// TODO Auto-generated method stub
 		String msg = "";
 		Recipe oldRecipe = em.find(Recipe.class, recipe.getRecipeId());
 		if (oldRecipe != null) {
@@ -67,6 +66,16 @@ public class RecipeRepositoryImplementation implements RecipeRepository{
 			msg = "Recipe Not found";
 		}
 		return msg;
+	}
+	
+	@Override
+	public Recipe findRecipeById(int id) {
+		Recipe recipe = em.find(Recipe.class, id);
+		if(recipe != null) {
+			return recipe;
+		} else {
+			return null;			
+		}
 	}
 
 	@SuppressWarnings("unchecked")

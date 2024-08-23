@@ -38,4 +38,9 @@ public class RecipeServiceImplementation implements RecipeService{
 		return repo.findAllRecipes();
 	}
 
+	@Override
+	public Recipe getRecipeById(int id) {
+		return repo.findRecipeById(id);
+	}
+
 }

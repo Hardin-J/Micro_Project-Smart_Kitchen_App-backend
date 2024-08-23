@@ -13,26 +13,32 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "Purchase_History_tbl")
 public class PurchaseHistory {
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "Purchase_History_id")
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "Purchase_History_id")
 	private long purchaseHistoryId;
-	
-	@ManyToOne(cascade = CascadeType.MERGE, targetEntity = Product.class)
+
+	@ManyToOne
 	@JoinColumn
 	private Product product;
-		
+
 	@ManyToOne(cascade = CascadeType.MERGE, targetEntity = User.class)
 	@JoinColumn
 	private User user;
+	
+	@Column(name = "product_quantity")
+	private int quantity;
 
 	public PurchaseHistory() {
 		super();
 	}
 
-	public PurchaseHistory(long purchaseHistoryId, Product product, User user) {
+	public PurchaseHistory(long purchaseHistoryId, Product product, User user, int quantity) {
 		super();
 		this.purchaseHistoryId = purchaseHistoryId;
 		this.product = product;
 		this.user = user;
+		this.quantity = quantity;
 	}
 
 	public long getPurchaseHistoryId() {
@@ -57,5 +63,13 @@ public class PurchaseHistory {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 }

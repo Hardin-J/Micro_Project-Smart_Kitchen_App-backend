@@ -11,6 +11,8 @@ public interface RecipeRepository {
 	public String update(Recipe recipe);
 
 	public String delete(int id);
+	
+	public Recipe findRecipeById(int id);
 
 	public List<Recipe> findAllRecipes();
 }
